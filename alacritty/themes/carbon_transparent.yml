@@ -1,0 +1,26 @@
+---
+colors:
+  # Default colors
+  normal:
+    Black: '#000000'    # Black (Host)
+    Red: '#FF3030'    # Red (Syntax string)
+    Green: '#559A70'    # Green (Command)
+    Yellow: '#CCAC00'    # Yellow (Command second)
+    Blue: '#0099CC'    # Blue (Path)
+    Magenta: '#CC69C8'    # Magenta (Syntax var)
+    Cyan: '#7AC4CC'    # Cyan (Prompt)
+    White: '#BCCCCC'    # White
+  bright:
+    Black: '#000000'    # Bright Black
+    Red: '#FF3030'    # Bright Red (Command error)
+    Green: '#559A70'    # Bright Green (Exec)
+    Yellow: '#CCAC00'    # Bright Yellow
+    Blue: '#0099CC'    # Bright Blue (Folder)
+    Magenta: '#CC69C8'    # Bright Magenta
+    Cyan: '#7AC4CC'    # Bright Cyan
+    White: '#BCCCCC'    # Bright White
+  primary:
+    background: '#000000'  # Background
+    foreground: '#AFC2C2'  # Foreground (Text)
+  cursor:
+    cursor: '#AFC2C2'      # Cursor

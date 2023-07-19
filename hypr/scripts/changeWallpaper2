@@ -1,0 +1,31 @@
+#!/bin/bash
+
+DIR=$HOME/Pictures/wallpapers
+
+# Fetch the Bing wallpaper
+BING_URL="http://www.bing.com"
+JSON_INFO=$(curl -s "$BING_URL/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US")
+IMG_URL=$(echo $JSON_INFO | jq -r '.images[0].url')
+
+# Generate a safe filename based on the current date
+DATE=$(date +%Y%m%d)
+IMG_NAME="bing_wallpaper_$DATE.jpg"
+
+# echo "Downloading $BING_URL$IMG_URL to $WALLPAPER_DIR/$IMG_NAME"
+
+wget -q "$BING_URL$IMG_URL" -O $DIR/$IMG_NAME
+PICS=($(ls ${DIR}))
+
+RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
+
+if [[ $(pidof swaybg) ]]; then
+  pkill swaybg
+fi
+
+swww query || swww init
+
+#change-wallpaper using swww
+prime-run swww img ${DIR}/${RANDOMPICS} --transition-fps 72 \
+  --transition-type random \
+  --transition-duration 4 
+
