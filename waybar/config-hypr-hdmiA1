@@ -4,7 +4,7 @@
     // -------------------------------------------------------------------------
 
     "layer": "top",
-    "output": "HDMI-A-1",
+    "output": ["HDMI-A-1","eDP-1"],
 
     "position": "top",
 
@@ -12,14 +12,14 @@
 
     "margin-left": 10,
     "margin-bottom": -9,
-    "margin-right": 10,
-    "margin-top": -4,
+    "margin-right": 3,
+    "margin-top": -5,
 
     "spacing": 0,
 
     "modules-left": [
         "custom/rofi",
-        "wlr/workspaces",
+        "hyprland/workspaces",
         //"temperature",
         //"idle_inhibitor",
         //"mpd"
@@ -35,13 +35,21 @@
     ],
     "modules-right": [
         "custom/CurlNetctl",
+        "custom/sp2",
         //"network",
         "custom/storage",
+        "custom/sp2",
         "memory",
+        "custom/sp2",
         "cpu",
+        "custom/sp2",
         //"battery",
         "backlight",
+        "custom/sp2",
+        "bluetooth",
+        "custom/sp2",
         "pulseaudio",
+        "custom/sp2",
         "custom/screenshot_t",
         "custom/power",
         "custom/keyboard",
@@ -54,15 +62,15 @@
     // -------------------------------------------------------------------------
 
     "custom/sp1": {
-        "format": " | ",
+        "format": "|",
         "tooltip": false
     },
     "custom/sp2": {
-        "format": " |",
+        "format": "",
         "tooltip": false
     },
     "custom/rofi": {
-        "format": "",
+        "format": " ",
         "tooltip": false,
         "on-click-right": "~/.config/hypr/scripts/menu",
         "on-click": "~/.config/hypr/scripts/menu",
@@ -99,7 +107,7 @@
         "format": "{icon}  {temperatureC}°C",
         "format-icons": ["", "", ""],
         "max-length": 7,
-        "min-length": 7,
+        "min-length": 4,
         "on-click": "xsensors"
     },
     "custom/temperature": {
@@ -195,11 +203,12 @@
         "interval": 3600,
         //"exec": "curl -s 'https://wttr.in/?format=1'",
         "return-type": "json",
-        "exec": "~/.config/waybar/modules/weather.sh",
-        "exec-if": "ping wttr.in -c1"
+        "exec": "~/.config/waybar/modules/weather.sh Çankaya",
+        "exec-if": "ping wttr.in -c1",
+        "on-click-middle": "rm -rf ~/.cache/rbn/"
     },
     "custom/pacman": {
-        "format": "<big>ᗤ</big>  {}",
+        "format": "<big>ᗤ </big> {}",
         "interval": 3600,                     // every hour
         "exec": "checkupdates | wc -l",       // # of updates
         "exec-if": "exit 0",                  // always run; consider advanced run conditions
@@ -225,7 +234,7 @@
     "custom/power": {
         "format": "",
         "tooltip": false,
-        "on-click": "wlogout"
+        "on-click": "~/.config/rofi/scripts/powermenu_t4"
     },
 
     "clock": {
@@ -235,33 +244,54 @@
     },
 
     "clock#date": {
-        "format": "❤️  {:%a %H:%M   %e %b}", // Icon: calendar-alt
+        "format": "📅 {:%a %H:%M      %e %b}", // Icon: calendar-alt
         //"format": "{:%I:%M %p  %A %b %d}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "today-format": "<b>{}</b>"
+        "tooltip-format": "<big>{:%Y %B %e}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<b>{}</b>",
+        "calendar": {
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "on-click-right": "mode",
+            "format": {
+              "months":     "<span color='#ffead3'><b>{}</b></span>",
+              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+              }
+            },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+            }
     },
 
     "cpu": {
         "interval": 1,
         //"format": "{}%", // Icon: microchip
-        "format": "  {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+        "format": " {max_frequency} GHz<span color=\"darkgray\">| {usage}%</span>",
         "max-length": 16,
-        "min-length": 16,
+        "min-length": 14,
         "on-click": "alacritty"
     },
     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 14,
-        "icon-theme": "Adawaita",
+        "icon-theme": "Papirus-Dark",
         "tooltip-format": "{title}",
         "on-click": "activate",
         "on-click-middle": "close",
         "ignore-list": [
            "Alacritty"
         ],
-        "app_ids-mapping": {
-          "cachybrowser": "firefox"
-        }
+        "tooltip": true,
+        "tooltip-format": "{title}",
+        "sort-by-app-id": true
     },
     "mpd": {
         "max-length": 25,
@@ -303,8 +333,8 @@
     },
     "pulseaudio": {
         "scroll-step": 3, // %, can be a float
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format": "{icon}   {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
         //"format-source": "{volume}% ",
@@ -314,31 +344,78 @@
         "format-icons": {
             "headphone": "",
             "hands-free": "",
-            "headset": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
-        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        //"on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-right" : "amixer sset Master toggle",
         "on-click-middle" : "killall -q pavucontrol"
+    },
+    "bluetooth": {
+	    "format": " {status}",
+	    "format-connected": " {device_alias}",
+	    "on-click": "bluetoothctl connect 74:45:CE:4B:1D:17",
+	    "on-click-right": "bluetoothctl disconnect 74:45:CE:4B:1D:17",
+	    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	    "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+	    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
     },
     "tray": {
         "icon-size": 12,
         "spacing": 2
     },
     "hyprland/workspaces": {
-	    "format": "{id}: {icon}",
+	   // "format": "{name}: {icon}",
+	    "sort-by": "id",
+	    "all-outputs": false,
+	    "show-special": true,
+        "format": "{name}: {icon} <sub><big>{windows}</big></sub>",
+        "format-window-separator": " ",
+        "window-rewrite-default": "  ",
+        "window-rewrite": {
+            "Cachy": "",
+            "Alacritty": "",
+            "Code - Insiders": "󰨞",
+            "org.keepassxc.KeePassXC": "🔒",
+            "thunderbird": "",
+            "thorium-browser": "",
+            "discord": "\uF300",
+            },
 	    "format-icons": {
 		    "1": "",
-		    "2": "",
-		    "3": "",
-		    "4": "",
-		    "5": "",
-		    "-99": "",
+		    "3": "🎬",
+		    "2": "",
+		    "4": "🎮",
+		    "5": "🪟",
+		    "10": "💻",
+		    "special" :"➥",
 		    "active": "",
-		    "default": ""
+		    "default": "",
+		    "urgent": "",
+		    "persistent": ""
 	    },
-	}
+       "persistent-workspaces": {
+             "HDMI-A-1": [1, 2, 3, 4],
+             "eDP-1": [10],
+             "special": ["HDMI-A-1"]
+       },
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1"
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) — Cachy Browser": "🌎 $1",
+            "(.*) - fish": "> [$1]",
+            "(.*) - Visual Studio Code - Insiders": "    $1",
+        },
+        "separate-outputs": true
+    }
 }

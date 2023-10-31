@@ -202,3 +202,7 @@ if status --is-interactive && type -q fastfetch
    fastfetch --load-config paleofetch
 end
 
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

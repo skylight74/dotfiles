@@ -26,6 +26,9 @@ swww query || swww init
 
 #change-wallpaper using swww
 prime-run swww img ${DIR}/${RANDOMPICS} --transition-fps 72 \
-  --transition-type random \
-  --transition-duration 4 
+  --transition-duration 1\
+  --transition-bezier .43,1.19,1,.4 \
+  --transition-type random
 
+eww kill
+prime-run eww open clock

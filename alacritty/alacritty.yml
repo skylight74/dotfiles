@@ -68,8 +68,9 @@ scrolling:
 #    magenta: '#c594c5'
 #    cyan:    '#5fb3b3'
 #    white:   '#d8dee9'
-import: 
-  - ~/.config/alacritty/themes/google_dark.yml
+import:
+    - ~/.cache/wal/colors-alacritty.yml
+#   - ~/.config/alacritty/themes/google_dark.yml
 # Colors (Nord)
 # colors:
 #   # Default colors
@@ -109,26 +110,26 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: monospace
+    family: IBM Plex Mono
     style: Regular
 
   # Bold font face
   bold:
-    family: monospace
+    family: IBM Plex Mono
     style: Bold
 
   # Italic font face
   italic:
-    family: monospace
+    family: IBM Plex Mono
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: monospace
+    family: IBM Plex Mono
     style: Bold Italic
 
   # Point size
-  size: 12
+  size: 11
 
 draw_bold_text_with_bright_colors: true
 
@@ -183,3 +184,4 @@ key_bindings:
   - { key: B,        mods: Control|Shift,           action: SearchBackward   }
   - { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
   - { key: Key0,     mods: Control,                 action: ResetFontSize    }
+  - { key: Return, mods: Shift, command: { program: "fish", args: ["-c", "alacritty --working-directory (pwd)"] } }

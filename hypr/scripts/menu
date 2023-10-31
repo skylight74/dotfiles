@@ -4,8 +4,21 @@ CONFIG="$HOME/.config/wofi/config"
 STYLE="$HOME/.config/wofi/style.css"
 COLORS="$HOME/.config/wofi/colors"
 
-if [[ ! $(pidof wofi) ]]; then
-	wofi --show drun --prompt 'Search...' --conf ${CONFIG} --style ${STYLE} --color ${COLORS}
+if [[ ! $(pidof rofi) ]]; then
+	# wofi --show drun --prompt 'Search...' --conf ${CONFIG} --style ${STYLE} --color ${COLORS}
+	prime-run /home/mohamed/.config/rofi/launchers/type-7/launcher.sh
 else
-	pkill wofi
+	# shut down the running instance of rofi
+	pkill -x rofi
 fi
+
+
+## styles that work 
+# type 1 style 15
+# type 1 style 4
+# type 3 style 2
+# type 5 style 2
+# type 5 style 3
+# type 5 style 5
+# type 6 style 7
+# type 7 style 4

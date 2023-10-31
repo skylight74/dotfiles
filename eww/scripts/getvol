@@ -1,0 +1,6 @@
+VOL="$(mpc volume | awk '{print $2}' | sed 's/.$//' )"
+if [[ $(mpc volume) == "volume:100%" ]]; then
+	echo "100"
+else
+	echo $VOL
+fi;

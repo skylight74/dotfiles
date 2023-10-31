@@ -1,15 +1,15 @@
+@import 'colors-waybar.css';
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 11px;
+  font-family: IBM Plex Sans, FontAwesome, IBM Plex mono, monospace;
+  font-size: 10px;
   font-weight: 900;
   margin: 0;
   padding: 0;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
-
-
+window.eDP-1 * { font-size: 10px; }
 /* Reset all styles */
 * {
     border: none;
@@ -17,7 +17,26 @@
     min-height: 0;
     margin: 0.2em 0.3em 0.2em 0.3em;
 }
-
+#custom-sp2{
+  background-color: transparent;
+  padding: 0px 0px;
+  color: @color11;
+  text-shadow: 0 0 2px @color11, 0 0 3px @color116;
+}
+.modules-right{
+  background-color: @color0;
+  border-radius: 5px 0px 10px 25px;
+  border: 1px solid @color11; 
+  /* border: 1px @color11 solid; */
+  padding: 7px 3px 3px 10px;
+  margin: 0px 0px;
+  min-height: 0;
+  margin-top: -0.3em;
+  margin-right: -0.1em;
+  margin-bottom: 0.2em;
+  box-shadow: 0 0 2px @color11, 0 0 3px @color116,
+              inset 0 0 2px @color11, inset 0 0 3px @color116;
+}
 /* The whole bar */
 #waybar {
     /*background: @bg;*/
@@ -50,8 +69,10 @@ window#waybar.empty #window {
 window#waybar.solo #window {
     padding-left: 5px;
     padding-right: 5px;
-    color: #eee8d5; /* base2 */
+    color: @color15; /* base2 */
     background-color: transparent; /*base02*/
+    border: none;
+    box-shadow: none;
 }
 
 window#waybar.floating #window {
@@ -64,20 +85,20 @@ window#waybar.floating #window {
 window#waybar.tiled #window {
     padding-left: 5px;
     padding-right: 5px;
-    color: #eee8d5; /* base2 */
+    color: @color9; /* base2 */
     background-color: #cb4b16; /* orange */
 
 }
 window#waybar.stacked #window {
     padding-left: 5px;
     padding-right: 5px;
-    color: #eee8d5; /* base2 */
+    color: @color9; /* base2 */
     background: #2aa196; /*cyan*/
 }
 window#waybar.tabbed #window {
     padding-left: 5px;
     padding-right: 5px;
-    color: #eee8d5; /* base2 */
+    color: @color9; /* base2 */
     background: #859900; /*green*/
 }
 
@@ -86,8 +107,9 @@ window#waybar.code {
 }
 
 #workspaces button {
-  padding: 0 0px;
-  color: #7984a4;
+  padding: 0px 0px;
+  /* color: #eee8d5; */
+  color : @color9;
   background-color: transparent;
   /* Use box-shadow instead of border so the text isn't offset */
   box-shadow: inset 0 -3px transparent;
@@ -96,16 +118,23 @@ window#waybar.code {
   border-radius: 0;
 }
 
-#workspaces button.focused {
+#workspaces button.persistent {
   background-color: transparent;
+  color: @color2;
 }
-#workspace button.hover {
+#workspaces button.empty {
   background-color: transparent;
 }
 #workspaces button.active {
-  color: #fff;
+  color: @cursor;
 }
-
+#workspaces button.visible {
+  color: @cursor;
+}
+#workspaces button.special {
+  /* thunderbird blue */
+  color: @color7;
+}
 #workspaces button.urgent {
   background-color: #eb4d4b;
 }
@@ -127,11 +156,11 @@ window#waybar.code {
 #mode,
 #idle_inhibitor,
 #mpd,
-#bluetooth,
+#custom-power,
+#custom-keyboard,
 #custom-hyprPicker,
 #custom-power-menu,
 #custom-spotify,
-#custom-weather,
 #custom-CurlNetctl,
 #custom-weather.severe,
 #custom-weather.sunnyDay,
@@ -143,32 +172,59 @@ window#waybar.code {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-storage,
-/* #custom-pacman, */
+#custom-pacman,
 #custom-weather.default {
-  padding: 0px 10px;
-  color: #e5e5e5;
-  /* color: #bf616a; */
-  border-radius: 20px;
-  /* background-color: #1e1e1e; */
-  background-color: rgba(30, 30, 30, 0.5);
+  /* padding: 0px 10px; */
+  color: @color15;
 }
-
-#window,
-#workspaces {
+#bluetooth.connected {
+  /* border: 1px @color11 solid; */
+  /* padding: 0px 10px; */
+    /* color would be bluetooth icon color */
+  color: #0082FC;
+  /* border-radius: 20px; */
+  /* background-color: @color0; */
+}
+#window{
+  color: @color15;
   border-radius: 20px;
-  padding: 0px 10px;  
-  background-color: rgba(30, 30, 30, 0.5);
+  padding: 0px 5px;  
+  background-color: @color0;
+  border: 1px solid @color11;
+  /* box-shadow: 0 0 2px @color11, 0 0 3px @color116, */
+  /*             inset 0 0 2px @color11, inset 0 0 3px @color116; */
+  /* margin-right: 5.5em; */
  /* background-color: #1e1e1e; */
 }
 
+#workspaces {
+  color: @color15;
+  border-radius: 20px 0px 20px 0px;
+  padding: 0px 5px;  
+  background-color: @color0;
+  border: 1px solid @color11;
+  box-shadow: 0 0 2px @color11, 0 0 3px @color116,
+              inset 0 0 2px @color11, inset 0 0 3px @color116;
+ /* background-color: #1e1e1e; */
+}
+#custom-keyboard,
+#custom-power{
+  padding: 0px 0px;
+  background-color: transparent;
+}
+#custom-pacman {
+  background-color: transparent;
+  padding: 0px 1px;
+}
 #cpu {
   color: #FFA500;
-  background-color: rgba(30, 30, 30, 0.5);
+  /* padding: 0px 1px; */
+  /* background-color: @color0; */
 }
 
 #memory {
-  color: #4682b4;
-  background-color: rgba(30, 30, 30, 0.5);
+  color: #FF0000;
+  /* background-color: @color0; */
 }
 
 #custom-power-menu {
@@ -227,27 +283,60 @@ window#waybar.code {
 }
 
 #pulseaudio {
-  padding: 0px 10px;
+  /* padding: 0px 10px; */
   color: #34A853;
-  border: 1px solid grey;
-  border-radius: 20px;
-  background-color: rgba(30, 30, 30, 0.5);
+  /* border: 1px @color11 solid; */
+  /* border-radius: 20px; */
+  /* background-color: @color0; */
 }
 
 #custom-screenshot_t{
-  border: 1px solid grey;
+  /* border: 1px @color11 solid; */
 }
 #backlight {
-  color: #FFFFE0;
+  color: #f1c40f;
   /* color: #8fbcbb; */  
-  border: 1px solid grey;
+  /* border: 1px @color11 solid; */
+}
+
+#custom-weather {
+    padding: 3px 5px 3px 7px;
+    color: @color15;
+    border-radius: 0px 0px 20px 0px;
+    background-color: @color0;
+    margin-top: 0em;
+    margin-left: 0em;
+    border-bottom: 1px solid @color11;
+    border-right: 1px solid @color11;
+    /* box-shadow:  */
+    /*     inset -1px 0 1px -1px @color11,  */
+    /*     inset 0 -1px 1px -1px @color11, */
+    /*     inset -2px 0 2px -1px @color116, */
+    /*     inset 0 -2px 2px -1px @color116, */
+    /*     1px 0 1px -1px @color11, */
+    /*     0 1px 1px -1px @color11,  */
+    /*     2px 0 2px -1px @color116, Adjusted outer shadow */
+    /*     0 2px 2px -1px @color116; Adjusted outer shadow */
 }
 
 #clock {
-    padding: 0px 15px;
-    color: #c8d2e0;
-    border-radius: 20px;
-    background-color: rgba(30, 30, 30, 0.5);
+    padding: 3px 5px 3px 5px;
+    color: @color15;
+    border-radius: 0px 0px 0px 20px;
+    background-color: @color0;
+    margin-top: 0em;
+    margin-right: 0em;
+    border-bottom: 1px solid @color11;
+    border-left: 1px solid @color11;
+    /* box-shadow:  */
+    /*     inset 1px 0 1px -1px @color11,  */
+    /*     inset 0 -1px 1px -1px @color11, */
+    /*     inset 2px 0 2px -1px @color116, */
+    /*     inset 0 -2px 2px -1px @color116, */
+    /*     -1px 0 1px -1px @color11, */
+    /*     0 1px 1px -1px @color11,   */
+    /*     -2px 0 2px -1px @color116,  */
+    /*     0 2px 2px -1px @color116;  */
 }
 
 #battery {
@@ -287,7 +376,8 @@ label:focus {
 }
 
 #bluetooth {
-  color: #707d9d;
+  /* // the color is the combination of the color of the icon and the background / */
+  color: #b48ead;
 }
 
 #bluetooth.disconnected {
@@ -304,9 +394,14 @@ label:focus {
 
 #custom-media {
   /* background-color: #66cc99; */
-  background-color: rgba(30, 30, 30, 0.5);
-  color: #66cc99;
+  background-color: @color0;
+  border-radius: 20px 0px 20px 0px;
+  padding: 0px 10px;
+  color: @color6;
   min-width: 100px;
+  border: 1px solid @color11;
+  box-shadow: 0 0 2px @color11, 0 0 3px @color116,
+              inset 0 0 2px @color11, inset 0 0 3px @color116;
 }
 
 #custom-media.custom-spotify {
@@ -367,5 +462,6 @@ label:focus {
   background: rgba(0, 0, 0, 0.2);
 }
 #custom-temperature{
+  /* padding: 0px 0px; */
   background-color: transparent;
 }

@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 import argparse
-import logging
-import sys
-import signal
-import gi
 import json
+import logging
+import signal
+import sys
+
+import gi
+from gi.repository import GLib, Playerctl
+
 gi.require_version('Playerctl', '2.0')
-from gi.repository import Playerctl, GLib
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +44,7 @@ def on_metadata(player, metadata, manager):
         track_info = player.get_title()
 
     if player.props.status != 'Playing' and track_info:
-        track_info = ' ' + track_info
+        track_info = '  ' + track_info
     write_output(track_info, player)
 
 

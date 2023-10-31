@@ -28,3 +28,17 @@ google-chrome/*
 google-chrome
 autostart/org.keepassxc.KeePassXC.desktop
 xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+btop/btop.conf
+nvim
+ClickUp
+ClickUp/*
+Microsoft
+Microsoft/*
+xsettingsd
+xsettingsd/*
+YouTube Music
+YouTube Music/*
+configstore
+configstore/*
+dlv
+autostart/teams.desktop

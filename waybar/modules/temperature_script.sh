@@ -39,6 +39,6 @@ json=$(jq -n \
     '{text: $text, alt: $alt, tooltip: $tooltip, class: $class}')
 # Output the CSS class with the generated color as a json object
 # echo -e "{\"text\":\"$cpu_temperature\", \"alt\":\"$gpu_temperature\", \"tooltip\":\"$color\", \"class\":\"$color\"}"
-echo -e "{\"text\":\"<span background='$color'><big>  $cpu_temperature </big></span>\", \"alt\":\"<span background='$color'><big>  $gpu_temperature </big></span>\", \"tooltip\":\"$tooltip\"}"
+echo -e "{\"text\":\"<span background='$color'><big>  $cpu_temperature </big></span>\", \"alt\":\"<span background='$color'><big> ⚙$gpu_temperature </big></span>\", \"tooltip\":\"$tooltip\"}"
 # echo -e "{\"text\":\"<span style='background: $color; font-size: 20px; padding: 20px;'>$cpu_temperature</span>\", \"alt\":\"<span style='background: $color; font-size: 20px; padding: 20px;'>$gpu_temperature</span>\", \"tooltip\":\"$tooltip\"}"
 
