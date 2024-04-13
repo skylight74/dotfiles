@@ -1,0 +1,245 @@
+format = """\
+[╭╴](fg:arrow)\
+$username\
+$os\
+$git_branch\
+$git_metrics\
+$git_status\
+(\
+    in \
+    $directory\
+)\
+$cmd_duration\
+(\
+    via \
+    $python\
+    $nodejs\
+    $c\
+    $rust\
+    $golang\
+)\
+$fill\
+(\
+    $docker_context\
+    $kubernetes\
+)\
+$memory_usage\
+$time
+[╰─](fg:arrow)$sudo$character \
+"""
+# Add the modules you need
+
+# Disable the blank line at the start of the prompt
+add_newline = true
+
+
+palette = "normal"
+
+
+[palettes.normal]
+arrow = "#333533"
+os = "#16f4d0"
+os_admin = "#e4ff1a"
+directory = "#9ffff5"
+time = "#bdfffd"
+node = "#a5e6ba"
+git = "#f17f29"
+git_status = "#DFEBED"
+python = "#edf67d"
+conda = "#70e000"
+java = "#F86279"
+rust = "#ffdac6"
+clang = "#caf0f8"
+duration = "#ce4257"
+text_color = "#EDF2F4"
+text_light = "#26272A"
+color_kubernetes = "#3371E3"
+color_foreground_light = "#EDEDED" # myth_editor_foreground
+# I disabled some modules (Rust, Java...) since some things aren't installed in my machine, enable them if you need.
+
+[username]
+style_user = 'bold os'
+style_root = 'bold os_admin'
+format = '[  $user](fg:$style) '
+disabled = false
+show_always = true
+
+[os]
+format = "on [($name)]($style) "
+style = "bold blue"
+disabled = true
+
+[os.symbols]
+Alpine = " "
+Arch = " "
+Debian = " "
+EndeavourOS = " "
+Fedora = " "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mint = " "
+NixOS = " "
+openSUSE = " "
+Pop = " "
+SUSE = " "
+Ubuntu = " "
+Windows = " "
+CachyOS = " "
+[character]
+success_symbol = "[󰍟❯](fg:bold os)"
+error_symbol = "[󰍟❯](fg:bold os_admin)"
+
+[directory]
+format = "[$path](bold $style)[$read_only]($read_only_style) "
+truncation_length = 3
+# style = "fg:directory"
+read_only_style = "fg:directory"
+before_repo_root_style = "fg:directory"
+truncation_symbol = "…/"
+truncate_to_repo = true
+read_only ="  "
+
+# [time]
+# disabled = false
+# format = "at [󱑈 $time]($style)"
+# time_format = "%H:%M "
+# style = "bold fg:time bg:os"
+
+[cmd_duration]
+format = "took [ $duration]($style) "
+style = "bold fg:duration"
+min_time = 500
+
+[git_branch]
+format = "via [$symbol$branch]($style) "
+style = "bold fg:git"
+symbol = " "
+
+[git_metrics]
+disabled = false
+format = 'with [+$added]($added_style)/[-$deleted]($deleted_style) '
+added_style = "fg:green"
+deleted_style = "fg:red"
+
+[git_status]
+format = '\[$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind\] ($style)'
+# format = '[ $all_status$ahead_behind ]($style)'
+# style = "fg:text_color bg:git"
+
+
+[package]
+disabled=true
+
+[fill]
+symbol = " "
+
+[directory.substitutions]
+"~/Documents" = " "
+"~/Downloads" = " "
+"~/Music" = "  "
+"~/Pictures" = " "
+"~" = " "
+" /Work" = " "
+".config" = " "
+" /Disk" = " "
+" /Desktop" = " "
+
+[bun]
+disabled = false
+symbol = " "
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[c]
+disabled = false
+symbol = " "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[golang]
+disabled = false
+symbol = "  "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[python]
+disabled = false
+symbol = " "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+python_binary = ["./venv/bin/python", "./env/Scripts/python", "python", "python3", "python2"]
+format = '[$symbol($version)]($style)[ (\($virtualenv\)) ](bg:fourth fg:white)'
+
+[conda]
+symbol = " "
+style = "bg:fourth fg:white"
+ignore_base = false
+format = '[$symbol ($environment) ]($style)'
+
+[haskell]
+symbol = " "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[java]
+symbol = " "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[julia]
+symbol = " "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[nodejs]
+disabled = false 
+symbol = " "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[rust]
+disabled = false
+symbol = " "
+version_format = "${raw}"
+style = "bg:fourth fg:white"
+format = '[$symbol($version) ]($style)'
+
+[docker_context]
+disabled = false
+symbol = " "
+style = "bg:fifth fg:white"
+format = '[$symbol $context ]($style)'
+
+
+[kubernetes]
+disabled = false
+detect_files = ['kubeconfig', 'kubeconfig.*']
+# detect_folders = ['^(?!.*\/\.kube\/).*$']
+# detect_extensions = true
+symbol = "󱃾" # nf-md-kubernetes
+style = "bg:color_kubernetes fg:color_foreground_light"
+format = ' [](fg:color_kubernetes)[$symbol $user@$context/$namespace]($style)[](fg:color_kubernetes)'
+[kubernetes.context_aliases]
+'kind-.*' = 'kind'
+[kubernetes.user_aliases]
+'kubernetes-admin' = 'admin'
+'^kind-(?P<var_name>.*)' = '$var_name'
+[time]
+disabled = false
+format = "[](fg:arrow)[ $time]($style)"
+time_format = "%H:%M"
+style = "bg:arrow"
+
+[sudo]
+disabled = false
+symbol = " 󱫖 " # nf-md-timer_lock_open_outline
+style = "bg:color_base_red_light fg:color_foreground_light"
+# allow_windows = true
+format = "[$symbol]($style)"

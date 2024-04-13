@@ -63,8 +63,8 @@ swww img $wallpaper --transition-step 20 --transition-fps=20 \
 # ----------------------------------------------------- 
 # Send notification
 # ----------------------------------------------------- 
-notify-send "Theme and Wallpaper updated" "With image $newwall"
-
+# notify-send "Theme and Wallpaper updated" "With image $newwall"
+hyprctl notify 5 5000 "rgba(000000ff)" "  Theme and Wallpaper updated With image $newwall"
 
 eww update
 # eww kill

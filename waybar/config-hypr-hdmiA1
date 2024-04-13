@@ -4,14 +4,14 @@
     // -------------------------------------------------------------------------
 
     "layer": "top",
-    "output": ["HDMI-A-1","eDP-1"],
+    "output": ["HDMI-A-1"],
 
     "position": "top",
 
     //"height": 20,
 
     "margin-left": 10,
-    "margin-bottom": -9,
+    "margin-bottom": -5,
     "margin-right": 3,
     "margin-top": -5,
 
@@ -44,8 +44,8 @@
         "cpu",
         "custom/sp2",
         //"battery",
-        "backlight",
-        "custom/sp2",
+        //"backlight",
+        //"custom/sp2",
         "bluetooth",
         "custom/sp2",
         "pulseaudio",
@@ -387,12 +387,15 @@
             "thunderbird": "",
             "thorium-browser": "",
             "discord": "\uF300",
+            "com.stremio.Stremio": "",
+            "TradingView": "💹",
+            "dev.warp.Warp": "",
             },
 	    "format-icons": {
 		    "1": "",
-		    "3": "🎬",
+		    "3": "📈",
 		    "2": "",
-		    "4": "🎮",
+		    "4": "🎮🎬",
 		    "5": "🪟",
 		    "10": "💻",
 		    "special" :"➥",

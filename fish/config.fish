@@ -156,6 +156,11 @@ alias tarnow='tar -acf '
 alias untar='tar -xvf '
 alias wget='wget -c '
 alias rmpkg="sudo pacman -Rdd"
+alias getpkg="sudo pacman -S"
+alias getpkgf="sudo pacman -Sf"
+alias update="sudo pacman -Syu"
+alias spkg="yay -i"
+alias zipls="zipinfo -2"
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
 alias upd='/usr/bin/garuda-update'
@@ -184,9 +189,18 @@ alias apt='man pacman'
 alias apt-get='man pacman'
 alias please='sudo'
 alias tb='nc termbin.com 9999'
-
+alias start='prime-run Hyprland'
+alias startsvc='sudo systemctl start'
+alias statussvc='systemctl status'
+alias stopsvc='sudo systemctl stop'
+alias d='docker'
+alias b='nvim ~/.config/hypr/scripts/screenShader.frag'
+alias connecths='bluetoothctl connect 74:45:CE:4B:1D:17'
+alias disconnecths='bluetoothctl disconnect 74:45:CE:4B:1D:17'
+alias powerup='sudo cpupower frequency-set -g performance'
+alias powerdown='sudo cpupower frequency-set -g powersave'
 # Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
+alias cleanup='sudo pacman -Rns (pacman -Qtdq) || sudo pacman -Scc && paru -Scc && yay -Scc && rm -rf ~/.stremio-server'
 
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
@@ -199,10 +213,11 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 ## Run fastfetch if session is interactive
 if status --is-interactive && type -q fastfetch
-   fastfetch --load-config paleofetch
+   fastfetch --load-config paleofetch.jsonc
 end
 
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+source /opt/asdf-vm/asdf.fish
